@@ -1,20 +1,35 @@
+// ООП - объектно-ориентированное программирование
+// Функция, которая находится внутри класса, называется "метод".
 
+class CounterControl{
+    constructor(startValue, plusBtn, minusBtn){
+        this.counterValue = startValue;
+        this.plusBtn = plusBtn;
+        this.minusBtn = minusBtn;
 
+        plusBtn.addEventListener("click", () => {
+            this.increase();
+            this.drawValue();
+        })
 
+        minusBtn.addEventListener("click", () => {
+            this.decrease();
+            this.drawValue();
+        })
+    }
 
+    drawValue(){
+        let span = document.querySelector("#counter");
+        span.innerHTML = this.counterValue;
+    }
 
+    increase(){
+        this.counterValue++;
+    }
 
-
-let user = {
-    login: "realibi",
-    passwords: ["asd123", "qwerty"],
-    location: {
-        city: "Almaty",
-        street: "Navoi",
-    },
-    loginFunc: function(){
-        console.log(`${this.passwords[0]} logged in`);
+    decrease(){
+        this.counterValue--;
     }
 }
 
-user.loginFunc();
+let cc = new CounterControl(0, document.querySelector("#plusBtn"), document.querySelector("#minusBtn"));
